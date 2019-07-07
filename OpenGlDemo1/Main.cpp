@@ -333,6 +333,7 @@ void mouse_click_func(int button, int state, int x, int y)
 			glutPostRedisplay();
 		}
 		break;
+		// 向下转动
 	case GLUT_WHEEL_DOWN:
 		if (state == GLUT_UP) {
 			absolute_scale(1.1f);
