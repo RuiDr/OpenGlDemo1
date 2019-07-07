@@ -112,8 +112,9 @@ void display_func()
 	glMatrixMode(GL_MODELVIEW);
 	// 设置当前矩阵
 	glLoadMatrixf(modelview_matrix);
-
+	// 绘制球以及三角形
 	draw();
+	// 画线
 	xyz_line(40.0);
 	// 交换两个缓冲区的指针，当绘制完成，将结果显示在屏幕上，从而解决频繁刷新导致的画面闪烁问题
 	glutSwapBuffers();
@@ -210,8 +211,11 @@ int main(int argc, char * argv[])//这是使用glut库函数进行窗口管理
 	glutInitWindowPosition(300, 0);
 	glutCreateWindow("glut test");
 	// The callbacks.
+	// 改变窗口大小时保持图像比例
 	glutReshapeFunc(reshape_func);
+	// 显示，三角形，球以及直线
 	glutDisplayFunc(display_func);
+	// 鼠标事件
 	glutMouseFunc(mouse_click_func);
 	glutMotionFunc(mouse_move_func);
 	glutKeyboardFunc(keyboard_func);
@@ -224,6 +228,8 @@ int main(int argc, char * argv[])//这是使用glut库函数进行窗口管理
 // 窗口大小改变的响应函数
 void reshape_func(int w, int h)
 {
+	// glViewport决定了将OpengGL渲染的图形，显示在屏幕的什么位置，
+	// 第一和第二参数决定开始渲染的位置，后两个参数分别为宽和高
 	glViewport(0, h - win_w, win_w, win_h);
 }
 /* 以下三个函数对物体进行平移、旋转、缩放，他们均在视觉(绝对)坐标下进行
@@ -280,6 +286,7 @@ void mouse_click_func(int button, int state, int x, int y)
 {
 	y = win_h - y;
 	switch (button) {
+		// 左按钮
 	case GLUT_LEFT_BUTTON:
 		if (state == GLUT_DOWN) {
 			l_button_down = true;
@@ -292,6 +299,7 @@ void mouse_click_func(int button, int state, int x, int y)
 			glutSetCursor(GLUT_CURSOR_INHERIT);
 		}
 		break;
+	    // 中间
 	case GLUT_MIDDLE_BUTTON:
 		if (state == GLUT_DOWN) {
 			mid_button_down = true;
@@ -305,6 +313,7 @@ void mouse_click_func(int button, int state, int x, int y)
 			glutSetCursor(GLUT_CURSOR_INHERIT);
 		}
 		break;
+		// 右边
 	case GLUT_RIGHT_BUTTON:
 		if (state == GLUT_DOWN) {
 			r_button_down = true;
@@ -317,6 +326,7 @@ void mouse_click_func(int button, int state, int x, int y)
 			glutSetCursor(GLUT_CURSOR_INHERIT);
 		}
 		break;
+		// 转动
 	case GLUT_WHEEL_UP:
 		if (state == GLUT_UP) {
 			absolute_scale(.9f);
@@ -331,6 +341,7 @@ void mouse_click_func(int button, int state, int x, int y)
 		break;
 	}
 }
+// 鼠标移动
 void mouse_move_func(int x, int y)
 {
 	y = win_h - y;
