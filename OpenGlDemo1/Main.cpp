@@ -16,13 +16,12 @@ void xyz_line(float len)
 
 	// 设置颜色
 	color[0] = 1.0; color[1] = .0; color[2] = .0;
-	// 前后，周围漫射.....
+	// 前后，周围漫射..............
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, color);
 	glVertex3f(.0, .0, .0);
 	glVertex3f(len, .0,.0);
 	color[0] = .0; color[1] = 1.0; color[2] = .0;
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, color);
-
 	glVertex3f(.0, .0, .0);
 	glVertex3f(.0, len, .0);
 	color[0] = .0; color[1] = .0; color[2] = 1.0;
